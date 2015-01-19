@@ -9,6 +9,10 @@
 # standard deviation.  The second data set gives the average of each variable in 
 # the first data set by activity and subject.
 
+# load some libraries
+library("dplyr")
+library("stringr")
+
 # read in the features - these are the column variabls
 # need to clean out the () and - to make variable names cleaner
 features <- read.table("./features.txt",as.is=TRUE,col.names = c("featureNum","feature"))
@@ -30,11 +34,11 @@ ytest <- read.table("./test/y_test.txt",col.names = c("activityNum"))
 subtest <- read.table("./test/subject_test.txt",col.names = c("subject"),colClasses = "factor")
 subtest$subject <- str_pad(subtest$subject,width=2, side="left", pad="0")
 
-# add the subtrain, Xtrain, and ytrain to the train dataframe
+# add the subtest, Xtest, and ytest to the test dataframe
 test <- cbind(subtest,Xtest,ytest)
 
 # now join the train and test dataframes by adding  all the rows of
-# train and test into a dataframe calle df
+# train and test into a dataframe called df
 df <- rbind(train,test)
 
 # read in the activity list and add a column activity to df based on activityNum
@@ -44,16 +48,14 @@ df <- cbind(df,activity)
 
 # Subset the dataframe to only get the mean and std for each measurement
 # use a regular expression to get a vector of the correct variable names
-# and then select
-varnames <- grep("mean[^F]|std",names(df),value=TRUE)
+# and then select with the varnames
+varnames <- grep("mean($|[^A-Z])|std",names(df),value=TRUE)
 varnames <- c("subject",varnames,"activity")
 df1 <- select(df, one_of(varnames))
 
-# write the first dataframe to file
-write.table(df1,"dataframe1.txt",row.name=FALSE)
+# write the dataframe to file
+write.table(df1,"dataframe.txt",row.name=FALSE)
 
 #create the second dataframe with average for each variable by subject and by activity
 df2 <- df1 %>% group_by(activity,subject) %>% summarise_each(funs(mean))
 
-# write the second dataframe to file
-write.table(df2,"dataframe2.txt",row.name=FALSE)
