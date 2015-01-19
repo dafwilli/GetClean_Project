@@ -6,11 +6,11 @@ http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartpho
 
 The original file contains data collected from smartphones of 30 volunteers performing six activities.  See the website for a full description of the data.
 
-dataframe1.txt is a subset of the original data.  It contains the following variables:
-subject
-tBodyAcc.mean.X
-tBodyAcc.mean.Y
-tBodyAcc.mean.Z
+### dataframe1.txt is a subset of the original data.  It contains the following variables:
+###subject
+###tBodyAcc.mean.X
+###tBodyAcc.mean.Y
+###tBodyAcc.mean.Z
 tBodyAcc.std.X
 tBodyAcc.std.Y
 tBodyAcc.std.Z
