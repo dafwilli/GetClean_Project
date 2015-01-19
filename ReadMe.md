@@ -1,6 +1,6 @@
 # Final Project of Getting and Cleaning Data
 
-### This R script, run_analysis.R, creates a data file, dataframe.txt.  It is  generated from the UCI Machine Learning Repository website 
+#### This R script, run_analysis.R, creates a data file, dataframe.txt.  It is  generated from the UCI Machine Learning Repository website 
 
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
